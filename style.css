@@ -7,6 +7,12 @@ body {
   margin:0;
   background: white;
 }
+#canvas {
+  z-index: -1;
+  position: fixed;
+  top:0; left: 0;
+  opacity: 0.1;
+}
 #main {
   width:var(--width);
   height:var(--height);
@@ -53,6 +59,8 @@ body {
   box-shadow: 0 0 2px black;
   text-decoration: none;
   padding: 1vh 1vw;
+  border-radius: 5px;
+  background-color: white;
 }
 
 
