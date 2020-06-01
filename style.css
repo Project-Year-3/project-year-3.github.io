@@ -1,0 +1,76 @@
+:root {
+  --width:100vw;
+  --height:100vh;
+  font-size: 16px;
+}
+body {
+  margin:0;
+  background: white;
+}
+#main {
+  width:var(--width);
+  height:var(--height);
+  display: grid;
+  grid-template-areas:
+  "header"
+  "body"
+  "footer";
+  margin: 0 auto;
+}
+
+#header {
+  grid-area: "header";
+  font-size: 1.5rem;
+  display: flex;
+  place-items: center;
+  place-content: center;
+}
+#body {
+  grid-area: "body";
+  display: grid;
+  place-items: center;
+}
+#footer {
+  grid-area: "footer";
+  height:5vh;
+  display: grid;
+  place-content: center;
+}
+
+#links {
+  display: grid;
+  grid-auto-flow: row;
+  column-gap: 2vw;
+  row-gap:2vh;
+  font-size: 10vw;
+}
+#links > a {
+  display: grid;
+  color:inherit;
+  text-align: center;
+  grid-auto-flow: row;
+  place-items: center;
+  box-shadow: 0 0 2px black;
+  text-decoration: none;
+  padding: 1vw 1vh;
+}
+
+
+.feather {
+  height:20vmin;
+  width:20vmin;
+}
+
+@media (min-width: 600px){
+  :root {
+    --width:70vw;
+    --height:100vh;
+  }
+  #links {
+    grid-auto-flow: column;
+  }
+  .feather {
+    height:10vmin;
+    width:10vmin;
+  }
+}
