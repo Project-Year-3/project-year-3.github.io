@@ -10,14 +10,14 @@ init = function(){
   if(canvas.height < canvas.width){
     c_width = canvas.height/min_num;
     num_down = 10;
-    num_across = Math.ceil(canvas.height / c_width);
+    num_across = Math.ceil(canvas.width/ c_width);
   }
 
   total_num = num_down * num_across;
 
   hard_state = [];
   soft_state = [];
-  delta = 0.02;
+  delta = 0.04;
 
   for(let i=0; i<total_num; i++){
     hard_state.push(Math.round(Math.random()));
