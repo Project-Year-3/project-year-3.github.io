@@ -12,7 +12,8 @@ body {
   z-index: -1;
   position: fixed;
   top:0; left: 0;
-  opacity: 0.1;
+  opacity: 1;
+  filter: blur(4px);
 }
 #main {
   width:var(--width);

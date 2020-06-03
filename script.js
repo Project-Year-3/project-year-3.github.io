@@ -26,6 +26,9 @@ init = function(){
     soft_state.push(0);
   }
   timer = null;
+
+  ctx.fillStyle="hsl(0,0%,95%)";
+
   render = function(){
     ctx.beginPath();
     ctx.clearRect(0,0,canvas.width,canvas.height)
