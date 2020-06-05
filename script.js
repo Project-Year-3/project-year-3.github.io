@@ -18,8 +18,7 @@ init = function(){
   hard_state = [];
   soft_state = [];
   delta = 0.04;
-  c_index = 0;
-  isTouching = false;
+  hasTouched = false;
 
   for(let i=0; i<total_num; i++){
     hard_state.push(Math.round(Math.random()));
@@ -28,6 +27,7 @@ init = function(){
   timer = null;
 
   ctx.fillStyle="hsl(0,0%,95%)";
+  ctx.strokeStyle="hsl(0,0%,75%)";
 
   render = function(){
     ctx.beginPath();
@@ -35,6 +35,12 @@ init = function(){
     anim = requestAnimationFrame(render);
     let i = soft_state.length;
     let is_equal = true;
+
+    if(hasTouched){
+      hard_state[c_index] = 1 - hard_state[c_index];
+      hasTouched = false;
+    }
+
     while(i--){
       if(hard_state[i] != soft_state[i]){
         is_equal = false;
@@ -49,15 +55,8 @@ init = function(){
       let y = Math.floor(i/num_across)*c_width + (c_width-w)/2;
       
       ctx.moveTo(x,y);
-      ctx.fillRect(x,y,w,w);
-    }
-
-    if(isTouching){
-      let w = c_width;
-      let x=(c_index%num_across)*c_width + (c_width-w)/2;
-      let y = Math.floor(c_index/num_across)*c_width + (c_width-w)/2;
-      ctx.moveTo(x,y);
-      ctx.fillRect(x,y,w,w);
+      // ctx.fillRect(x,y,w,w);
+      ctx.strokeRect(x,y,w,w)
     }
 
     if(!is_equal){
@@ -68,7 +67,7 @@ init = function(){
       timer = Date.now();
       return true;
     }
-    if(Date.now() - timer > 100){
+    if(Date.now() - timer > 50){
       timer = null;
     } else {
       return true;
@@ -100,25 +99,18 @@ init = function(){
     }
   }
   render();
-  window.addEventListener("touchstart",(e)=>{
-    let x = e.changedTouches[0].clientX;
-    let y = e.changedTouches[0].clientY;
-    let cy = (y/window.innerHeight)*num_down;
-    let cx = (x/window.innerWidth)*num_across;
-    c_index = Math.floor(cy)*num_across + Math.floor(cx);
-    isTouching = true;
-  });
-  window.addEventListener("touchmove",(e)=>{
-    let x = e.changedTouches[0].clientX;
-    let y = e.changedTouches[0].clientY;
-    let cy = (y/window.innerHeight)*num_down;
-    let cx = (x/window.innerWidth)*num_across;
-    c_index = Math.floor(cy)*num_across + Math.floor(cx);
-    isTouching = true;
-  });
-  window.addEventListener("touchend",(e)=>{
-    isTouching = false;
-  });
 
+  document.body.addEventListener("touchend",(e)=>{
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    // let x = e.screenX;
+    // let y = e.screenY;
+    let maxW = window.innerWidth;// document.body.clientWidth;
+    let maxH = window.innerHeight;//document.body.clientHeight;
+    let cy = (y/maxH)*num_down;
+    let cx = (x/maxW)*num_across;
+    c_index = Math.floor(cy)*num_across + Math.floor(cx);
+    hasTouched = true;
+  });
 }
 init();
