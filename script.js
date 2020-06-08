@@ -26,7 +26,7 @@ init = function(){
   }
   timer = null;
 
-  ctx.fillStyle="hsl(0,0%,95%)";
+  ctx.fillStyle="hsl(200, 50%, 87%)";
   ctx.strokeStyle="hsl(0,0%,75%)";
 
   render = function(){
@@ -55,8 +55,8 @@ init = function(){
       let y = Math.floor(i/num_across)*c_width + (c_width-w)/2;
       
       ctx.moveTo(x,y);
-      // ctx.fillRect(x,y,w,w);
-      ctx.strokeRect(x,y,w,w)
+      ctx.fillRect(x,y,w,w);
+      //ctx.strokeRect(x,y,w,w)
     }
 
     if(!is_equal){
