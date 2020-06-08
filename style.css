@@ -97,4 +97,9 @@ body {
     height:10vmin;
     width:10vmin;
   }
+
+  #links > a > img {
+    height:10vmin;
+    width:10vmin;
+  }
 }
