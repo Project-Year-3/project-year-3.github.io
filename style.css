@@ -70,7 +70,7 @@ body {
   text-decoration: none;
   padding: 1vh 1vw;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.0);
+  background:linear-gradient(225deg, hsla(207, 100%, 55%, 0.45) 0%, transparent 67%);
   backdrop-filter: blur(5px);
 }
 

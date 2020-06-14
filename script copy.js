@@ -18,22 +18,19 @@ init = function(){
   hard_state = [];
   soft_state = [];
   delta = 0.04;
-  strength = 1;
-  energy = 0.05;
-  regen = 0.005;
   hasTouched = false;
 
   for(let i=0; i<total_num; i++){
     hard_state.push(Math.round(Math.random()));
     soft_state.push(0);
   }
+  timer = null;
 
-  
+  ctx.fillStyle="hsl(200, 50%, 87%)";
   ctx.strokeStyle="hsl(0,0%,75%)";
 
   render = function(){
     ctx.beginPath();
-    ctx.fillStyle=`hsl(${Math.floor(200*strength)}, 50%, 87%)`;
     ctx.clearRect(0,0,canvas.width,canvas.height)
     anim = requestAnimationFrame(render);
     let i = soft_state.length;
@@ -66,16 +63,12 @@ init = function(){
       return true;
     }
 
-    if(strength >= 1) {
-      strength = 1;
-      tired = false;
+    if(timer == null){
+      timer = Date.now();
+      return true;
     }
-    if(strength < 0.2){
-      tired = true;
-      strength += regen;
-    }
-    if(!tired){
-      strength -= energy;
+    if(Date.now() - timer > 50){
+      timer = null;
     } else {
       return true;
     }
